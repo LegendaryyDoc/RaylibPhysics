@@ -1,5 +1,5 @@
 #include "physics.h"
-#include "raylib.h"
+#include "raylib/raylib.h"
 
 physObject::physObject()
 {
@@ -8,7 +8,7 @@ physObject::physObject()
 	forces = { 0,0 };
 
 	mass = 1.0f;
-	drag = 1.0f;
+	drag = 0.0f;
 }
 
 void physObject::tickPhys(float delta)
@@ -33,4 +33,20 @@ void physObject::draw() const
 void physObject::addForce(glm::vec2 force)
 {
 	forces += force * (1.0f / mass);
+}
+
+void physObject::addImpluse(glm::vec2 impulse)
+{
+	vel += impulse * (1.0f / mass);
+}
+
+void physObject::addAccel(glm::vec2 accel)
+{
+	// TODO: implement this
+	assert(false);
+}
+
+void physObject::addVelcityChange(glm::vec2 delta)
+{
+	vel += delta;
 }
